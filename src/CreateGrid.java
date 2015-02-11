@@ -11,11 +11,11 @@ public class CreateGrid {
         pixels = new SeparateChainingHashST<Point2D, Pixelization>();
         Pixelization rowStart;
 
-        double rootLat = 18.005611;
+        double rootLat = 24.544091;
         double rootLong = -124.626080;
         double brLat = rootLat;
         double brLong = rootLong;
-        double eastEdge = -62.361014;
+        double eastEdge = -66.949894;
         double northEdge = 48.987386;
 
 
@@ -35,12 +35,14 @@ public class CreateGrid {
 
                 brLat = pixel.get_brLat();
                 brLong = pixel.get_brLong();
-                StdOut.println("X: "+ x);
+                //StdOut.println("X: "+ x);
                 x++;
-
+                if(x==10) break;
             }
-            StdOut.println("Y: "+ y);
+            //StdOut.println("Y: "+ y);
             y++;
+            x=0;
+            if(y==10) break;
             brLat = rowStart.get_tlLat();
             brLong = rowStart.get_tlLong();
             Point2D nmbr = new Point2D(x,y);
@@ -86,10 +88,10 @@ public class CreateGrid {
 
     public static void main(String[] args) {
         StdDraw.setPenColor(Color.RED);
-        StdDraw.setXscale(-124.626080,-62.361014);
-        StdDraw.setYscale(18.005611,48.987386);
+        StdDraw.setXscale(-124.626080,-66.949894);
+        StdDraw.setYscale(24.544091,48.987386);
 
-        StdDraw.line(-124.626080,18.005611,-62.361014,48.987386);
+        StdDraw.line(-124.626080,24.544091,-66.949894,48.987386);
         StdDraw.setPenColor(Color.BLACK);
 
 
@@ -98,7 +100,7 @@ public class CreateGrid {
         StdOut.println("grid created, number of pxels: " + grid.Size());
 
         for(Point2D p : grid.getKeys()){
-            Point2D bl = grid.getPixelBl(p);
+            Point2D bl = grid.getPixelBr(p);
             StdOut.println(bl.toString());
             StdDraw.point(bl.x(),bl.y());
         }
