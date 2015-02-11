@@ -7,8 +7,8 @@ import java.io.*;
 
 
 public class Pixelization {
-		double radian_long = 0;
-		double radian_lat = 1.57079633;
+		double radian_long = 1.57079;
+		double radian_lat = 0;
 		double lat_topleft;
 		double lat_bottomleft;
 		double lat_topright;
@@ -26,45 +26,46 @@ public class Pixelization {
 		this.pixel = pixel;
 		this.lat_bottomleft = latbottomleft;
 		this.long_bottomleft = longbottomleft;
-		this.long_bottomright = longbottomleft;
-		this.lat_bottomright = compute_lat_bottomright(latbottomleft, longbottomleft);
-		this.long_topleft = compute_long_topleft(latbottomleft, longbottomleft);
-		this.lat_topleft = latbottomleft;
-		this.long_topright = compute_long_topleft(latbottomleft, longbottomleft);
-		this.lat_bottomright = compute_lat_bottomright(latbottomleft, longbottomleft);
-		this.lat_centroid = compute_lat_centroid(lat_bottomleft, lat_bottomright);
-		this.long_centroid = compute_long_centroid(lat_bottomleft, long_topleft);
+		this.long_bottomright = compute_long_bottomright(latbottomleft, longbottomleft);
+		this.lat_bottomright = latbottomleft;
+		this.long_topleft = longbottomleft;
+		this.lat_topleft = compute_lat_topleft(latbottomleft, longbottomleft);
+		this.long_topright = compute_long_bottomright(latbottomleft, longbottomleft);
+		this.lat_bottomright = latbottomleft;
+		this.lat_centroid = compute_lat_centroid(lat_bottomleft, lat_topleft);
+		this.long_centroid = compute_long_centroid(long_bottomleft, long_bottomright);
 	}
 
-	private double compute_long_topleft(double latbottomleft, double longbottomleft) {
-		double x1 = latbottomleft;
-		double y1 = longbottomleft;
-		double x2 = x1;
-		double y2; 
-
-		y2 = y1 - Math.acos((Math.cos(radian_long) - Math.sin(x1)*Math.sin(x2))/ (Math.cos(x1)*Math.cos(x2)));
-		return y2; 
-	}
-
-	private double compute_lat_centroid(double latbottomleft, lat_bottomright) {
-		return (latbottomleft + lat_bottomright)/2;
-	}
-
-	private double compute_long_centroid(double longbottomleft, double longtopleft) {
-		return (longbottomleft + long_topleft)/2;
-	}
-
-	private double compute_lat_bottomright(double latbottomleft, double longbottomleft) {
+	private double compute_lat_topleft(double latbottomleft, double longbottomleft) {
 		double x1 = latbottomleft;
 		double y1 = longbottomleft;
 		double y2 = y1; 
 		double recipx2;
 		double x2; 
-		recipx2 = Math.atan((Math.cos(radian_lat)/(Math.cos(x1)*Math.cos(y1- y2))) - (Math.tan(x1)/Math.cos(y1 - y2)))
 
-		x2 = 1/recipx2;
+		x2 = Math.asin(Math.degrees(Math.cos(x1))*Math.degrees(Math.cos(.25)) + Math.degrees(Math.cos(x1))*Math.degrees(Math.sin(.25))*
+			Math.degrees(Math.cos(radian_lat)))
 
 		return x2; 
+
+	}
+
+	private double compute_long_centroid(double latbottomleft, lat_bottomright) {
+		return (latbottomleft + lat_bottomright)/2;
+	}
+
+	private double compute_lat_centroid(double longbottomleft, double longtopleft) {
+		return (longbottomleft + long_topleft)/2;
+	}
+
+	private double compute_long_bottomright(double latbottomleft, double longbottomleft) {
+		double x1 = latbottomleft;
+		double y1 = longbottomleft;
+		double lon;
+
+		lon= (y1 - Math.asin(Math.sin(radian_long)*Math.sin(.25)/(Math.cos(lat) + Math.pi)))%(2*Math.pi) - Math.pi
+		return lon; 
+
 
 	}
 
@@ -110,3 +111,4 @@ public class Pixelization {
 
 
 }
+
