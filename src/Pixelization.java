@@ -1,8 +1,7 @@
-/**
- * Created by Tharald on 10/02/15.
- */
-
-
+import java.util.*;
+import java.io.*;
+import java.awt.*;
+import java.lang.Math;
 
 public class Pixelization {
 		double radian_long = 1.57079;
@@ -35,14 +34,16 @@ public class Pixelization {
 	}
 
 	private double compute_lat_topleft(double latbottomleft, double longbottomleft) {
-		double x1 = latbottomleft;
-		double y1 = longbottomleft;
+		double x1 = Math.toRadians(latbottomleft);
+		double y1 = Math.toRadians(longbottomleft);
 		double y2 = y1; 
 		double recipx2;
 		double x2; 
 
-		x2 = Math.asin(Math.toDegrees(Math.cos(x1))*Math.toDegrees(Math.cos(.25)) + Math.toDegrees(Math.cos(x1))*Math.toDegrees(Math.sin(.25))*
-			Math.toDegrees(Math.cos(radian_lat)));
+		x2 = Math.toDegrees(Math.asin(Math.sin(x1)*Math.cos(.25) + Math.cos(x1)*Math.sin(.25)*
+			Math.cos(radian_lat)));
+
+		System.out.println("lat + " + x2);
 
 		return x2; 
 
@@ -57,11 +58,14 @@ public class Pixelization {
 	}
 
 	private double compute_long_bottomright(double latbottomleft, double longbottomleft) {
-		double x1 = latbottomleft;
-		double y1 = longbottomleft;
+		double x1 = Math.toRadians(latbottomleft);
+		double y1 = Math.toRadians(longbottomleft);
 		double lon;
 
-		lon= (y1 - Math.asin(Math.sin(radian_long)*Math.sin(.25)/(Math.cos(x1) + Math.PI)))%(2*Math.PI) - Math.PI;
+		lon= Math.toDegrees((y1 - Math.asin((Math.sin(radian_long)*Math.sin(.25))/Math.cos(x1)) + Math.PI)%(2*Math.PI) - Math.PI);
+
+		System.out.println("lon " + lon);
+
 		return lon; 
 
 
@@ -115,6 +119,18 @@ public class Pixelization {
         return long_centroid;
     }
 
+    public static void main(String[] args) {
+    	double lat = Double.parseDouble(args[0]);
+    	double lon = Double.parseDouble(args[1]);
+
+    	System.out.println("Starting lat: " + lat + " , Starting lon: " + lon);
+    	Point2D p = new Point2D(0.9,1.9);
+    	Pixelization pixel = new Pixelization(lat, lon, p);
+
+
+
+
+
+    }
 
 }
-
