@@ -23,10 +23,13 @@ public class Pixelization {
 		this.pixel = pixel;
 		this.lat_bottomleft = latbottomleft;
 		this.long_bottomleft = longbottomleft;
+
 		this.long_bottomright = compute_long_bottomright(latbottomleft, longbottomleft);
 		this.lat_bottomright = latbottomleft;
+
 		this.long_topleft = longbottomleft;
 		this.lat_topleft = compute_lat_topleft(latbottomleft, longbottomleft);
+
 		this.long_topright = compute_long_bottomright(latbottomleft, longbottomleft);
 		this.lat_bottomright = latbottomleft;
 		this.lat_centroid = compute_lat_centroid(lat_bottomleft, lat_topleft);
@@ -39,11 +42,11 @@ public class Pixelization {
 		double y2 = y1; 
 		double recipx2;
 		double x2; 
+		double distance = (Math.pi/(180*60))*.25;
 
-		x2 = Math.toDegrees(Math.asin(Math.sin(x1)*Math.cos(.25) + Math.cos(x1)*Math.sin(.25)*
+		x2 = Math.toDegrees(Math.asin(Math.sin(x1)*Math.cos(distance) + Math.cos(x1)*Math.sin(.25)*
 			Math.cos(radian_lat)));
 
-		System.out.println("lat + " + x2);
 
 		return x2; 
 
@@ -61,10 +64,9 @@ public class Pixelization {
 		double x1 = Math.toRadians(latbottomleft);
 		double y1 = Math.toRadians(longbottomleft);
 		double lon;
+		double distance = (Math.pi/(180*60))*.25;
 
-		lon= Math.toDegrees((y1 - Math.asin((Math.sin(radian_long)*Math.sin(.25))/Math.cos(x1)) + Math.PI)%(2*Math.PI) - Math.PI);
-
-		System.out.println("lon " + lon);
+		lon= (y1 - Math.asin((Math.sin(radian_long)*Math.sin(distance))/Math.cos(x1)) + Math.PI)%(2*Math.PI) - Math.PI);
 
 		return lon; 
 
@@ -126,6 +128,7 @@ public class Pixelization {
     	System.out.println("Starting lat: " + lat + " , Starting lon: " + lon);
     	Point2D p = new Point2D(0.9,1.9);
     	Pixelization pixel = new Pixelization(lat, lon, p);
+    	System.out.println("Lat : " + pixel.get_brLat() + "Long + " + pixel.get_brLong());
 
 
 
