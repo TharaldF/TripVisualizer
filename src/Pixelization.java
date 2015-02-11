@@ -1,8 +1,6 @@
 /**
  * Created by Tharald on 10/02/15.
  */
-import java.util.*;
-import java.io.*;
 
 
 
@@ -43,14 +41,14 @@ public class Pixelization {
 		double recipx2;
 		double x2; 
 
-		x2 = Math.asin(Math.degrees(Math.cos(x1))*Math.degrees(Math.cos(.25)) + Math.degrees(Math.cos(x1))*Math.degrees(Math.sin(.25))*
-			Math.degrees(Math.cos(radian_lat)))
+		x2 = Math.asin(Math.toDegrees(Math.cos(x1))*Math.toDegrees(Math.cos(.25)) + Math.toDegrees(Math.cos(x1))*Math.toDegrees(Math.sin(.25))*
+			Math.toDegrees(Math.cos(radian_lat)));
 
 		return x2; 
 
 	}
 
-	private double compute_long_centroid(double latbottomleft, lat_bottomright) {
+	private double compute_long_centroid(double latbottomleft, double lat_bottomright) {
 		return (latbottomleft + lat_bottomright)/2;
 	}
 
@@ -63,7 +61,7 @@ public class Pixelization {
 		double y1 = longbottomleft;
 		double lon;
 
-		lon= (y1 - Math.asin(Math.sin(radian_long)*Math.sin(.25)/(Math.cos(lat) + Math.pi)))%(2*Math.pi) - Math.pi
+		lon= (y1 - Math.asin(Math.sin(radian_long)*Math.sin(.25)/(Math.cos(x1) + Math.PI)))%(2*Math.PI) - Math.PI;
 		return lon; 
 
 
@@ -105,9 +103,17 @@ public class Pixelization {
 		return long_topright;
 	}
 
-	public double get_Pixel() {
+	public Point2D get_Pixel() {
 		return pixel;
 	}
+
+    public double get_centroidLat(){
+        return lat_centroid;
+    }
+
+    public double get_centroidLong(){
+        return long_centroid;
+    }
 
 
 }
