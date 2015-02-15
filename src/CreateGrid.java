@@ -14,7 +14,21 @@ public class CreateGrid {
         int jStart = -1000;
         int jEnd = 1000;
 
+        double initiallat = 18.005611;
+        double initallon = -124.626080;
+        double finallon = -62.361014;
+        double finallat = 48.987386;
 
+        double initialx = Math.floor(
+            138.348*(initallon + 97.5)*Math.toDegrees(Math.cos(Math.toRadians(initiallat)))
+            );
+        double initialy = Math.floor(138.348*(initiallat - 37.0));
+
+        double finalx = Math.floor(
+            138.348*(finallon + 97.5)*Math.toDegrees(Math.cos(Math.toRadians(finallat)))
+            );
+
+        double finaly = Math.floor(138.348*(finallat - 37.0));
 
         for(int i = iStart; i < iEnd; i++){
             for(int j = jStart; j <  jEnd; j++){
