@@ -26,7 +26,12 @@ public class CreateSqlTables {
         String url = "jdbc:mysql://127.0.0.1:3306/TestDB";
         Connection m_Connection = DriverManager.getConnection(url, "tharald", "putin");
 
-
+        CreateGrid grid = new CreateGrid();
+        for(Point2D p : grid.getKeys()){
+            Point2D bl = grid.getPixelBr(p);
+            StdOut.println(bl.toString());
+            StdDraw.point(bl.x(),bl.y());
+        }
         PreparedStatement total = m_Connection.prepareStatement("INSERT INTO table1 VALUES(?,?)");
         total.setInt(1, 3);
         total.setString(2, "JACOB");

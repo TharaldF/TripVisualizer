@@ -66,11 +66,10 @@ public class Pixelization {
 		double lon;
 		double distance = (Math.PI/(180*60))*.25;
 
-<<<<<<< HEAD
-		lon= (y1 - Math.asin((Math.sin(radian_long)*Math.sin(distance))/Math.cos(x1)) + Math.PI)%(2*Math.PI) - Math.PI;
-=======
-		lon= Math.toDegrees((y1 - Math.asin((Math.sin(-radian_long)*Math.sin(distance))/Math.cos(x1)) + Math.PI)%(2*Math.PI) - Math.PI);
->>>>>>> baf6804bc772315bf194bc37a47cadf07e08e06e
+
+		//lon = (y1 - Math.asin((Math.sin(radian_long)*Math.sin(distance))/Math.cos(x1)) + Math.PI)%(2*Math.PI) - Math.PI;
+
+		lon = Math.toDegrees((y1 - Math.asin((Math.sin(-radian_long)*Math.sin(distance))/Math.cos(x1)) + Math.PI)%(2*Math.PI) - Math.PI);
 
 		//System.out.println(lon);
 		return lon; 
