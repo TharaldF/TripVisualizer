@@ -5,6 +5,8 @@ import java.lang.Math;
 
 public class Pixelization {
 		int id; 
+		int x;
+		int y;
 		double CENTERLON = -97.5;
 		double CENTERLAT = 37; 
 		double YHEIGHT = 0.00722814;
@@ -17,6 +19,8 @@ public class Pixelization {
 
 
 	public Pixelization(int x, int y) {
+		this.x = x;
+		this.y = y;
 		this.id = createid(x, y);
 		this.bottomleft = createbottomleft(x, y);
 		this.bottomright = createbottomright(x,y);
@@ -92,6 +96,15 @@ public class Pixelization {
 	public Point2D get_br() {
 		return bottomright;
 
+	}
+
+	public int get_x() {
+		return x;
+
+	}
+
+	public int get_y() {
+		return y; 
 	}
 
 	public int get_id() {
