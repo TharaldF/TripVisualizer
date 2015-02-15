@@ -92,8 +92,8 @@ public class CreateGrid {
 
     public static void main(String[] args) {
         StdDraw.setPenColor(Color.RED);
-        StdDraw.setXscale(-124.626080,-123.949894);
-        StdDraw.setYscale(24.544091,25.987386);
+        StdDraw.setXscale(-124.626080,-62.361014);
+        StdDraw.setYscale(18.005611,48.987386);
 
         StdDraw.line(-124.626080,24.544091,-66.949894,48.987386);
         StdDraw.setPenColor(Color.BLACK);
