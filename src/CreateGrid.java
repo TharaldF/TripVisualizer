@@ -20,7 +20,7 @@ public class CreateGrid {
             for(int j = jStart; j <  jEnd; j++){
 
                 Pixelization pixel = new Pixelization(i,j);
-                int key = pixel.getID();
+                int key = pixel.get_id();
                 pixels.put(key,pixel);
 
                 //StdOut.println("X: "+ x);
@@ -43,45 +43,45 @@ public class CreateGrid {
 
     public int getX(int key){
         Pixelization pixel = pixels.get(key);
-        return pixel.getX();
+        return pixel.get_x();
     }
 
     public int getY(int key){
         Pixelization pixel = pixels.get(key);
-        return pixel.getY();
+        return pixel.get_y();
     }
 
     public Point2D getPixelCentroid(int key){
         Pixelization pixel = pixels.get(key);
-        Point2D returnPoint = pixel.getCentroid();
+        Point2D returnPoint = pixel.get_centroid();
         return returnPoint;
 
     }
 
     public Point2D getPixelBr(int key){
         Pixelization pixel = pixels.get(key);
-        Point2D returnPoint = pixel.getBr();
+        Point2D returnPoint = pixel.get_br();
         return returnPoint;
 
     }
 
     public Point2D getPixelBl(int key){
         Pixelization pixel = pixels.get(key);
-        Point2D returnPoint = pixel.getBl();
+        Point2D returnPoint = pixel.get_bl();
         return returnPoint;
 
     }
 
     public Point2D getPixelTr(int key){
         Pixelization pixel = pixels.get(key);
-        Point2D returnPoint = pixel.getTr();
+        Point2D returnPoint = pixel.get_tr();
         return returnPoint;
 
     }
 
     public Point2D getPixelTl(int key){
         Pixelization pixel = pixels.get(key);
-        Point2D returnPoint = pixel.getTl();
+        Point2D returnPoint = pixel.get_tl();
         return returnPoint;
 
     }
