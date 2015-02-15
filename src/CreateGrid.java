@@ -41,6 +41,16 @@ public class CreateGrid {
         return pixels.size();
     }
 
+    public int getX(int key){
+        Pixelization pixel = pixels.get(key);
+        return pixel.getX();
+    }
+
+    public int getY(int key){
+        Pixelization pixel = pixels.get(key);
+        return pixel.getY();
+    }
+
     public Point2D getPixelCentroid(int key){
         Pixelization pixel = pixels.get(key);
         Point2D returnPoint = pixel.getCentroid();
