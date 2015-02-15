@@ -30,7 +30,7 @@ public class CreateSqlTables {
 
         PreparedStatement total = m_Connection.prepareStatement("INSERT INTO Pixels VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-        for(int key : grid.getKeys()){
+        for(double key : grid.getKeys()){
             Point2D centroid = grid.getPixelCentroid(key);
             Point2D bl = grid.getPixelBl(key);
             Point2D br = grid.getPixelBr(key);
@@ -40,7 +40,7 @@ public class CreateSqlTables {
             int y = grid.getX(key);
 
             //ID
-            total.setInt(1, key);
+            total.setDouble(1, key);
 
             //X/Y
             total.setInt(2, x);
