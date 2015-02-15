@@ -4,127 +4,119 @@ import java.awt.*;
 import java.lang.Math;
 
 public class Pixelization {
-		double radian_long = 1.57079;
-		double radian_lat = 0;
-		double lat_topleft;
-		double lat_bottomleft;
-		double lat_topright;
-		double lat_bottomright; 
-		double long_topleft;
-		double long_bottomleft;
-		double long_topright;
-		double long_bottomright;
-		double lat_centroid;
-		double long_centroid; 
-		Point2D pixel;
+		int id; 
+		double CENTERLON = -97.5;
+		double CENTERLAT = 37; 
+		double YHEIGHT = 0.00722814;
+		double XWIDTH =  0.00944344;
+		Point2D bottomleft;
+		Point2D bottomright; 
+		Point2D topleft;
+		Point2D topright; 
+		Point2D centroid; 
 
 
-	public Pixelization(double latbottomleft, double longbottomleft, Point2D pixel) {
-		this.pixel = pixel;
-		this.lat_bottomleft = latbottomleft;
-		this.long_bottomleft = longbottomleft;
-
-		this.long_bottomright = compute_long_bottomright(latbottomleft, longbottomleft);
-		this.lat_bottomright = latbottomleft;
-
-		this.long_topleft = longbottomleft;
-		this.lat_topleft = compute_lat_topleft(latbottomleft, longbottomleft);
-
-		this.long_topright = compute_long_bottomright(latbottomleft, longbottomleft);
-		this.lat_bottomright = latbottomleft;
-		this.lat_centroid = compute_lat_centroid(lat_bottomleft, lat_topleft);
-		this.long_centroid = compute_long_centroid(long_bottomleft, long_bottomright);
-	}
-
-	private double compute_lat_topleft(double latbottomleft, double longbottomleft) {
-		double x1 = Math.toRadians(latbottomleft);
-		double y1 = Math.toRadians(longbottomleft);
-		double y2 = y1; 
-		double recipx2;
-		double x2; 
-		double distance = (Math.PI/(180*60))*.25;
-
-		x2 = Math.toDegrees(Math.asin(Math.sin(x1)*Math.cos(distance) + Math.cos(x1)*Math.sin(distance)*
-			Math.cos(radian_lat)));
-
-		//System.out.println(x2);
-		return x2; 
-
-	}
-
-	private double compute_long_centroid(double latbottomleft, double lat_bottomright) {
-		return (latbottomleft + lat_bottomright)/2;
-	}
-
-	private double compute_lat_centroid(double longbottomleft, double longtopleft) {
-		return (longbottomleft + long_topleft)/2;
-	}
-
-	private double compute_long_bottomright(double latbottomleft, double longbottomleft) {
-		double x1 = Math.toRadians(latbottomleft);
-		double y1 = Math.toRadians(longbottomleft);
-		double lon;
-		double distance = (Math.PI/(180*60))*.25;
+	public Pixelization(int x, int y) {
+		this.id = createid(x, y);
+		this.bottomleft = createbottomleft(x, y);
+		this.bottomright = createbottomright(x,y);
+		this.topleft = createtopleft(x,y);
+		this.topright = createtopright(x,y);
+		this.centroid = createcentroid();
 
 
-		//lon = (y1 - Math.asin((Math.sin(radian_long)*Math.sin(distance))/Math.cos(x1)) + Math.PI)%(2*Math.PI) - Math.PI;
-
-		lon = Math.toDegrees((y1 - Math.asin((Math.sin(-radian_long)*Math.sin(distance))/Math.cos(x1)) + Math.PI)%(2*Math.PI) - Math.PI);
-
-		//System.out.println(lon);
-		return lon; 
 
 
 	}
+	private int createid(int a, int b) {
+		return (int)0.5*(a+b)*(a+b+1)+b;
+	}
 
-	public double get_brLat() {
-		return lat_bottomright;
+	private Point2D createbottomleft(int i, int j) {
+		double lon, lat; 
+		double cosangle = Math.toDegrees(Math.cos(Math.toRadians(CENTERLAT + j)));
+		lon = (CENTERLON + (YHEIGHT*i)/cosangle); 
+		lat = (CENTERLAT + YHEIGHT*j);
+		Point2D p = new Point2D(lon, lat);
+		return p; 
+
+	}
+	private Point2D createbottomright(int i, int j) {
+		i++;
+		double lon, lat; 
+		double cosangle = Math.toDegrees(Math.cos(Math.toRadians(CENTERLAT + j)));
+		lon = (CENTERLON + (YHEIGHT*i)/cosangle); 
+		lat = (CENTERLAT + YHEIGHT*j);
+		Point2D p = new Point2D(lon, lat);
+		return p; 
 
 	}
 
-	public double get_brLong() {
-		return long_bottomright;
-	}
-
-	public double get_blLat() {
-		return lat_bottomleft;
-
-	}
-
-	public double get_blLong() {
-		return long_bottomleft;
-	}
-
-	public double get_tlLat() {
-		return lat_topleft;
+	private Point2D createtopleft(int i, int j) {
+		j++;
+		double lon, lat; 
+		double cosangle = Math.toDegrees(Math.cos(Math.toRadians(CENTERLAT + j)));
+		lon = (CENTERLON + (YHEIGHT*i)/cosangle); 
+		lat = (CENTERLAT + YHEIGHT*j);
+		Point2D p = new Point2D(lon, lat);
+		return p; 
 
 	}
 
-	public double get_tlLong() {
-		return long_topleft;
+	private Point2D createtopright(int i, int j) {
+		j++;
+		i++;
+		double lon, lat; 
+		double cosangle = Math.toDegrees(Math.cos(Math.toRadians(CENTERLAT + j)));
+		lon = (CENTERLON + (YHEIGHT*i)/cosangle); 
+		lat = (CENTERLAT + YHEIGHT*j);
+		Point2D p = new Point2D(lon, lat);
+		return p; 
+
 	}
 
-	public double get_trLat() {
-		return lat_topright;
+	private Point2D createcentroid() {
+		double lon, lat; 
+		lon = (bottomleft.x() + bottomright.x())/2;
+		lat = (bottomleft.y() + topleft.y())/2;
+
+
+
+		Point2D p = new Point2D(lon, lat);
+		return p; 
 
 	}
 
-	public double get_trLong() {
-		return long_topright;
+
+
+	public Point2D get_br() {
+		return bottomright;
+
 	}
 
-	public Point2D get_Pixel() {
-		return pixel;
+	public int get_id() {
+		return id;
 	}
 
-    public double get_centroidLat(){
-        return lat_centroid;
+	public Point2D get_bl() {
+		return bottomleft;
+
+	}
+
+	public Point2D get_tl() {
+		return topleft;
+
+	}
+
+	public Point2D get_tr() {
+		return topright;
+
+	}
+
+    public Point2D get_centroid(){
+        return centroid;
     }
-
-    public double get_centroidLong(){
-        return long_centroid;
-    }
-
+/*
     public static void main(String[] args) {
     	double lat = Double.parseDouble(args[0]);
     	double lon = Double.parseDouble(args[1]);
@@ -139,5 +131,6 @@ public class Pixelization {
 
 
     }
+    */
 
 }
