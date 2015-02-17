@@ -40,7 +40,7 @@ public class XMLReader {
                 org.w3c.dom.Node theState = statesList.item(i);
                 org.w3c.dom.Element stateElement = (org.w3c.dom.Element) theState;
                 //StdOut.println("This state is " + stateElement.getAttribute("name"));
-                Polygon newState = new Polygon(stateElement.getAttribute("name"));
+                Polygon newState = new Polygon(stateElement.getAttribute("name"), stateElement.getAttribute("colour"));
 
                 NodeList pointList = stateElement.getElementsByTagName("point");
                 for(int j = 0; j < pointList.getLength();j++){
@@ -69,6 +69,10 @@ public class XMLReader {
 
     public Polygon getStatePolygon(String state){
         return states.get(state);
+    }
+
+    public Iterable<Polygon> getAllPolygons(){
+        return treeST.getAllValues();
     }
 
     public String getClosestState(Point2D queryPoint){
@@ -114,18 +118,29 @@ public class XMLReader {
         StdOut.println(xmlReader.size());
         StdDraw.setXscale(-136,-66);
         StdDraw.setYscale(20.54,53);
-        for(String s: xmlReader.getAllStates()){
+        /*for(String s: xmlReader.getAllStates()){
             StdOut.println(s);
         }
-        StdDraw.setPenRadius(.006);
+
         StdDraw.setPenColor(Color.GREEN);
         int points= 0;
         for(Point2D p:xmlReader.getAllPoints()){
             p.draw();
             points++;
         }
-        StdOut.println(points);
-        xmlReader.drawTree();
+        */
+        for(Polygon p:xmlReader.getAllPolygons()){
+            StdDraw.setPenColor(p.color());
+            p.draw();
+        }
+        //StdOut.println(points);
+        //xmlReader.drawTree();
+        StdDraw.setPenColor(Color.BLACK);
+        StdDraw.setPenRadius(.006);
+
+        for(Point2D p:xmlReader.getAllPoints()){
+            p.draw();
+        }
 
     }
 }

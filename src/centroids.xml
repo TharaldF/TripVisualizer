@@ -1,0 +1,55 @@
+<states>
+    <state name="Alaska" lon="-149.05656" lat="63.08239">
+    <state name="Alabama" lon="-86.68338" lat="32.60661">
+    <state name="Arkansas" lon="-92.12893" lat="34.75712">
+    <state name="Arizona" lon="-111.93248" lat="34.17163">
+    <state name="California" lon="-119.25700" lat="37.26842">
+    <state name="Colorado" lon="-105.54781" lat="38.99604">
+    <state name="Connecticut" lon="-72.75720" lat="41.52281">
+    <state name="Delaware" lon="-75.41699" lat="39.14561">
+    <state name="Florida" lon="-81.68751" lat="28.06163">
+    <state name="Georgia" lon="-83.22671" lat="32.67985">
+    <state name="Hawaii" lon="-155.43683" lat="19.59269">
+    <state name="Iowa" lon="-93.39193" lat="41.93699">
+    <state name="Idaho" lon="-114.14093" lat="45.49204">
+    <state name="Illinois" lon="-89.51148" lat="39.74655">
+    <state name="Indiana" lon="-86.44417" lat="39.77044">
+    <state name="Kansas" lon="-98.32368" lat="38.49518">
+    <state name="Kentucky" lon="-85.76394" lat="37.81914">
+    <state name="Louisiana" lon="-91.42602" lat="30.97712">
+    <state name="Massachusetts" lon="-71.71267" lat="42.06141">
+    <state name="Maryland" lon="-76.74451" lat="38.82523">
+    <state name="Maine" lon="-69.02289" lat="45.26101">
+    <state name="Michigan" lon="-84.62436" lat="43.74509">
+    <state name="Minnesota" lon="-93.35500" lat="46.43515">
+    <state name="Missouri" lon="-92.43575" lat="38.29989">
+    <state name="Mississippi" lon="-89.86849" lat="32.59474">
+    <state name="Montana" lon="-110.05062" lat="46.67912">
+    <state name="North Carolina" lon="-79.88784" lat="35.21638">
+    <state name="North Dakota" lon="-100.30356" lat="47.46736">
+    <state name="Nebraska" lon="-99.68333" lat="41.49784">
+    <state name="New Hampshire" lon="-71.63407" lat="43.99997">
+    <state name="New Jersey" lon="-74.37751" lat="40.13828">
+    <state name="New Mexico" lon="-106.02717" lat="34.17184">
+
+        NV Nevada 32 -117.01664 38.50227
+        NY New York 36 -75.81028 42.75633
+        OH Ohio 39 -82.67375 40.19406
+        OK Oklahoma 40 -98.71880 35.31003
+        OR Oregon 41 -120.51327 44.13156
+        PA Pennsylvania 42 -77.61161 40.99494
+        PR Puerto Rico 72 -66.58765 18.19958
+        RI Rhode Island 44 -71.50537 41.57887
+        SC South Carolina 45 -80.94851 33.62318
+        SD South Dakota 46 -100.25584 44.21638
+        TN Tennessee 47 -85.97945 35.83453
+        TX Texas 48 -100.07718 31.16937
+        UT Utah 49 -111.54490 39.49720
+        VA Virginia 51 -79.46565 37.99920
+        VI Virgin Islands 78 -64.73421 17.72882
+        VT Vermont 50 -72.47119 43.86954
+        WA Washington 53 -120.84015 47.27291
+        WI Wisconsin 55 -89.84694 44.78330
+        WV West Virginia 54 -80.18361 38.92065
+        WY Wyoming 56 -107.55226 42.99929
+        UM Midway 74 -177.37427 28.19667

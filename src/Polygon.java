@@ -1,3 +1,4 @@
+import java.awt.*;
 
 /*************************************************************************
  *  Compilation:  javac Polygon.java
@@ -12,12 +13,15 @@ public class Polygon {
     private int N;        // number of points in the polygon
     private Point2D[] a;    // the points, setting points[0] = points[N]
     private String name;
+    private Color color;
 
     // default buffer = 4
-    public Polygon(String state) {
+    public Polygon(String state, String colour) {
         N = 0;
         a = new Point2D[4];
         name = state;
+        color = Color.decode(colour);
+
     }
 
 
@@ -124,13 +128,17 @@ public class Polygon {
         return rPoint;
     }
 
+    public Color color(){
+        return color;
+    }
+
 
     // test client
     public static void main(String[] args) {
         int N = 10;
 
         // a square
-        Polygon poly = new Polygon("STATE");
+        Polygon poly = new Polygon("STATE", "#ff0000");
         poly.add(new Point2D(5, 5));
         poly.add(new Point2D(9, 5));
         poly.add(new Point2D(9, 9));
