@@ -56,9 +56,10 @@ public class CreateGrid {
                 //StdOut.println("X: "+ x);
                 a++;
                 //StdOut.println(a);
+                //Point2D bottomleft = pixel.get_bl();
+                //StdOut.println(bottomleft.toString());
 
             }
-            if(a>10000) break;
             //StdOut.println("Y: "+ y);
         }
 
@@ -123,8 +124,8 @@ public class CreateGrid {
 
     public static void main(String[] args) {
         StdDraw.setPenColor(Color.RED);
-        StdDraw.setXscale(-130.626080,-62.949894);
-        StdDraw.setYscale(20.544091,52.987386);
+        StdDraw.setXscale(-136,-66);
+        StdDraw.setYscale(20.54,53);
 
         StdDraw.line(-124.626080,24.544091,-66.949894,48.987386);
         StdDraw.setPenColor(Color.BLACK);

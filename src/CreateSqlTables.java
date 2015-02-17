@@ -25,10 +25,12 @@ public class CreateSqlTables {
         Class.forName("com.mysql.jdbc.Driver");
         String url = "jdbc:mysql://127.0.0.1:3306/Grid";
         Connection m_Connection = DriverManager.getConnection(url, "tharald", "putin");
+        StdOut.println("Connection Successful");
 
         CreateGrid grid = new CreateGrid();
 
-        PreparedStatement total = m_Connection.prepareStatement("INSERT INTO Pixels VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        StdOut.println("Grid Created");
+
 
         for(double key : grid.getKeys()){
             Point2D centroid = grid.getPixelCentroid(key);
@@ -38,6 +40,8 @@ public class CreateSqlTables {
             Point2D tl = grid.getPixelTl(key);
             int x = grid.getX(key);
             int y = grid.getX(key);
+
+            PreparedStatement total = m_Connection.prepareStatement("REPLACE INTO Pixels VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             //ID
             total.setDouble(1, key);

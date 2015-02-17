@@ -35,7 +35,7 @@ public class Pixelization {
 	private double createid(int a, int b) {
         double returnn = 0.5*(a+195593+b+1724)*(a+195593+b+1724+1)+b+1724;
 
-        StdOut.println(returnn);
+        //StdOut.println(returnn);
         return returnn;
     }
 
