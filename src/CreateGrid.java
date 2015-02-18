@@ -1,8 +1,11 @@
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.*;
+import java.io.*;
+
 
 /**
- * Created by Tharald on 10/02/15.
+ * Created by Tharald AND JACOB on 10/02/15.
  */
 public class CreateGrid {
     private SeparateChainingHashST<Double,Pixelization> pixels;
@@ -20,12 +23,12 @@ public class CreateGrid {
         double finallat = 48.987386;
 
          iStart = (int) Math.floor(
-            138.348*(initallon + 97.5)*Math.toDegrees(Math.cos(Math.toRadians(initiallat)))
+            138.348*(initallon + 97.5)*Math.cos(Math.toRadians(initiallat))
             );
         jStart = (int) Math.floor(138.348*(initiallat - 37.0));
 
         iEnd = (int) Math.floor(
-            138.348*(finallon + 97.5)*Math.toDegrees(Math.cos(Math.toRadians(finallat)))
+            138.348*(finallon + 97.5)*Math.cos(Math.toRadians(finallat))
             );
 
         jEnd = (int) Math.floor(138.348*(finallat - 37.0));
@@ -48,18 +51,18 @@ public class CreateGrid {
 
         for(int i = iStart; i <= iEnd; i++){
             for(int j = jStart; j <= jEnd; j++){
-
                 Pixelization pixel = new Pixelization(i,j);
                 double key = pixel.get_id();
+                Point2D p = pixel.get_bl();
+                StdOut.println(p.toString());
                 pixels.put(key,pixel);
 
                 //StdOut.println("X: "+ x);
                 a++;
                 //StdOut.println(a);
-                //Point2D bottomleft = pixel.get_bl();
-                //StdOut.println(bottomleft.toString());
 
             }
+            if(a>10000) break;
             //StdOut.println("Y: "+ y);
         }
 
@@ -123,9 +126,10 @@ public class CreateGrid {
 
 
     public static void main(String[] args) {
+        
         StdDraw.setPenColor(Color.RED);
-        StdDraw.setXscale(-136,-66);
-        StdDraw.setYscale(20.54,53);
+        StdDraw.setXscale(-130.626080,-62.949894);
+        StdDraw.setYscale(20.544091,52.987386);
 
         StdDraw.line(-124.626080,24.544091,-66.949894,48.987386);
         StdDraw.setPenColor(Color.BLACK);
@@ -145,7 +149,6 @@ public class CreateGrid {
             bl.drawTo(tl);
             br.drawTo(tr);
         }
-
         StdOut.println("Done");
 
     }
