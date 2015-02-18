@@ -28,13 +28,20 @@ public class XMLReader {
         try{
             DocumentBuilder dBuilder = builderFactory.newDocumentBuilder();
             Document document = dBuilder.parse(XMLReader.class.getResourceAsStream("/states.xml"));
+            Document centroidsDocument = dBuilder.parse(XMLReader.class.getResourceAsStream("/centroids.xml"));
             document.normalize();
+            centroidsDocument.normalize();
+
+            NodeList centroids = centroidsDocument.getElementsByTagName("states");
+            Node centroidRoot = centroids.item(0);
+            Element centroidElementRoot = (Element) centroidRoot;
 
             NodeList rootNodes = document.getElementsByTagName("states");
             org.w3c.dom.Node rootNode = rootNodes.item(0);
             org.w3c.dom.Element rootElement = (org.w3c.dom.Element) rootNode;
 
             NodeList statesList = rootElement.getElementsByTagName("state");
+            NodeList centroidList = centroidElementRoot.getElementsByTagName("state");
 
             for(int i = 0; i < statesList.getLength();i++){
                 org.w3c.dom.Node theState = statesList.item(i);
@@ -49,10 +56,15 @@ public class XMLReader {
                     newState.add(newPoint);
                     //StdOut.println("Lat: " + pointElement.getAttribute("lat") + "Long: " + pointElement.getAttribute("lng"));
                 }
-                treeST.insert(newState.centroid(),newState);
+                Node statecentroid = centroidList.item(i);
+                Element centroidElement = (Element) statecentroid;
+                Point2D centroid = new Point2D(Double.parseDouble(centroidElement.getAttribute("lon")),Double.parseDouble(centroidElement.getAttribute("lat")));
+                treeST.insert(centroid,newState);
                 states.put(stateElement.getAttribute("name"),newState);
 
             }
+            Polygon nostate = new Polygon("NoState","#ff0000");
+            states.put("NoState", nostate);
 
 
         }
@@ -96,12 +108,8 @@ public class XMLReader {
     }
 
     public Iterable<String> getAllStates() {
-        Stack<String> returnStack = new Stack<String>();
-        for (Polygon pol : treeST.getAllValues()){
-            returnStack.push(pol.getName());
-        }
+        return states.keys();
 
-        return returnStack;
     }
 
     public Iterable<Point2D> getAllPoints(){
