@@ -29,19 +29,17 @@ public class Pixelization {
 		this.centroid = createcentroid();
 
 
-
-
 	}
 	private double createid(int a, int b) {
         double returnn = 0.5*(a+195593+b+1724)*(a+195593+b+1724+1)+b+1724;
 
-        //StdOut.println(returnn);
+       // StdOut.println(returnn);
         return returnn;
     }
 
 	private Point2D createbottomleft(int i, int j) {
 		double lon, lat; 
-		double cosangle = Math.toDegrees(Math.cos(Math.toRadians(CENTERLAT + j*YHEIGHT)));
+		double cosangle = Math.cos(Math.toRadians(CENTERLAT + j*YHEIGHT));
 		lon = (CENTERLON + (YHEIGHT*i)/cosangle); 
 		lat = (CENTERLAT + YHEIGHT*j);
 		Point2D p = new Point2D(lon, lat);
@@ -51,7 +49,7 @@ public class Pixelization {
 	private Point2D createbottomright(int i, int j) {
 		i++;
 		double lon, lat; 
-		double cosangle = Math.toDegrees(Math.cos(Math.toRadians(CENTERLAT + j*YHEIGHT)));
+		double cosangle = Math.cos(Math.toRadians(CENTERLAT + j*YHEIGHT));
 		lon = (CENTERLON + (YHEIGHT*i)/cosangle); 
 		lat = (CENTERLAT + YHEIGHT*j);
 		Point2D p = new Point2D(lon, lat);
@@ -62,7 +60,8 @@ public class Pixelization {
 	private Point2D createtopleft(int i, int j) {
 		j++;
 		double lon, lat; 
-		double cosangle = Math.toDegrees(Math.cos(Math.toRadians(CENTERLAT + j*YHEIGHT)));
+		double cosangle = Math.cos(Math.toRadians(CENTERLAT + j*YHEIGHT));
+
 		lon = (CENTERLON + (YHEIGHT*i)/cosangle); 
 		lat = (CENTERLAT + YHEIGHT*j);
 		Point2D p = new Point2D(lon, lat);
@@ -74,7 +73,7 @@ public class Pixelization {
 		j++;
 		i++;
 		double lon, lat; 
-		double cosangle = Math.toDegrees(Math.cos(Math.toRadians(CENTERLAT + j*YHEIGHT)));
+		double cosangle = Math.cos(Math.toRadians(CENTERLAT + j*YHEIGHT));
 		lon = (CENTERLON + (YHEIGHT*i)/cosangle); 
 		lat = (CENTERLAT + YHEIGHT*j);
 		Point2D p = new Point2D(lon, lat);
