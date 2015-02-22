@@ -1827,7 +1827,7 @@
         <point lat="44.9959" lng="-111.0498"/>
         <point lat="44.4750" lng="-111.0512"/>
     </state>
-    <state name="North Carolina" colour="#ffff00">
+    <state name="North_Carolina" colour="#ffff00">
         <point lat="33.7963" lng="-78.4850"/>
         <point lat="34.8037" lng="-79.6742"/>
         <point lat="34.8206" lng="-80.8003"/>
@@ -1889,7 +1889,7 @@
         <point lat="33.7666" lng="-77.9260"/>
         <point lat="33.7963" lng="-78.4863"/>
     </state>
-    <state name="North Dakota" colour="#ffff00">
+    <state name="North_Dakota" colour="#ffff00">
         <point lat="48.9955" lng="-104.0501"/>
         <point lat="45.9445" lng="-104.0446"/>
         <point lat="45.9340" lng="-96.5671"/>
@@ -1959,7 +1959,7 @@
         <point lat="42.9966" lng="-98.5020"/>
         <point lat="43.0006" lng="-104.0543"/>
     </state>
-    <state name="New Hampshire" colour="#00ffff">
+    <state name="New_Hampshire" colour="#00ffff">
         <point lat="45.0153" lng="-71.5045"/>
         <point lat="45.0532" lng="-71.4977"/>
         <point lat="45.0910" lng="-71.4619"/>
@@ -2068,7 +2068,7 @@
         <point lat="45.0017" lng="-71.5237"/>
         <point lat="45.0163" lng="-71.5045"/>
     </state>
-    <state name="New Jersey" colour="#ffff00">
+    <state name="New_Jersey" colour="#ffff00">
         <point lat="41.3572" lng="-74.6950"/>
         <point lat="41.3394" lng="-74.6559"/>
         <point lat="40.9934" lng="-73.8940"/>
@@ -2124,7 +2124,7 @@
         <point lat="41.3469" lng="-74.7249"/>
         <point lat="41.3593" lng="-74.6960"/>
     </state>
-    <state name="New Mexico" colour="#00ffff">
+    <state name="New_Mexico" colour="#00ffff">
         <point lat="36.9971" lng="-109.0448"/>
         <point lat="31.3337" lng="-109.0489"/>
         <point lat="31.3349" lng="-108.2140"/>
@@ -2185,7 +2185,7 @@
         <point lat="39.0000" lng="-120.0009"/>
         <point lat="41.9942" lng="-119.9982"/>
     </state>
-    <state name="New York" colour="#00ffff">
+    <state name="New_York" colour="#00ffff">
         <point lat="42.5142" lng="-79.7624"/>
         <point lat="42.7783" lng="-79.0672"/>
         <point lat="42.8508" lng="-78.9313"/>
@@ -2567,7 +2567,7 @@
         <point lat="39.7220" lng="-80.5243"/>
         <point lat="42.3240" lng="-80.5202"/>
     </state>
-    <state name="Rhode Island" colour="#ffff00">
+    <state name="Rhode_Island" colour="#ffff00">
         <point lat="41.3706" lng="-71.0568"/>
         <point lat="41.3706" lng="-71.0541"/>
         <point lat="41.6339" lng="-71.1447"/>
@@ -2589,7 +2589,7 @@
         <point lat="41.1849" lng="-71.7915"/>
         <point lat="41.2665" lng="-71.4084"/>
     </state>
-    <state name="South Carolina" colour="#ff8800">
+    <state name="South_Carolina" colour="#ff8800">
         <point lat="32.0488" lng="-80.7001"/>
         <point lat="32.0453" lng="-80.8978"/>
         <point lat="32.1105" lng="-81.1134"/>
@@ -2643,7 +2643,7 @@
         <point lat="32.2012" lng="-80.4240"/>
         <point lat="32.0500" lng="-80.7001"/>
     </state>
-    <state name="South Dakota" colour="#ff8800">
+    <state name="South_Dakota" colour="#ff8800">
         <point lat="45.9435" lng="-104.0501"/>
         <point lat="43.0026" lng="-104.0529"/>
         <point lat="42.9946" lng="-98.4993"/>
@@ -3366,7 +3366,7 @@
         <point lat="42.6340" lng="-90.7031"/>
         <point lat="42.5096" lng="-90.6303"/>
     </state>
-    <state name="West Virginia" colour="#0088ff">
+    <state name="West_Virginia" colour="#0088ff">
         <point lat="39.7188" lng="-79.4765"/>
         <point lat="39.2057" lng="-79.4806"/>
         <point lat="39.4871" lng="-79.0576"/>

@@ -29,25 +29,28 @@ public class CreateGrid {
             SeparateChainingHashST<Double,Pixelization> stateTable = new SeparateChainingHashST<Double, Pixelization>();
             pixels.put(state,stateTable);
         }
+
+        for(Polygon p:xmlReader.getAllPolygons()){
+            StdDraw.setPenColor(p.color());
+            p.draw();
+        }
+
+
         int iStart;
         int iEnd;
         int jStart;
         int jEnd;
 
         double initiallat = 24.544091;
-        double initallon = -124.626080;
-        double finallon = -66.949894;
+        double initallon = -120.5;
+        double finallon = -106.25;
         double finallat = 48.987386;
 
-        iStart = (int) Math.floor(
-                -            138.348*(initallon + 97.5)*Math.toDegrees(Math.cos(Math.toRadians(initiallat)))
-                        +            138.348*(initallon + 97.5)*Math.cos(Math.toRadians(initiallat))
+        iStart = (int) Math.floor(138.348*(initallon + 97.5)*Math.cos(Math.toRadians(initiallat))
         );
         jStart = (int) Math.floor(138.348*(initiallat - 37.0));
 
-        iEnd = (int) Math.floor(
-                -            138.348*(finallon + 97.5)*Math.toDegrees(Math.cos(Math.toRadians(finallat)))
-                        +            138.348*(finallon + 97.5)*Math.cos(Math.toRadians(finallat))
+        iEnd = (int) Math.floor(138.348*(finallon + 97.5)*Math.cos(Math.toRadians(finallat))
         );
 
         jEnd = (int) Math.floor(138.348*(finallat - 37.0));
@@ -76,8 +79,8 @@ public class CreateGrid {
         StdOut.println("Connection Successful");
 
 
-        for(int i = iStart; i <= iEnd; i++){
-            for(int j = jStart; j <= jEnd; j++){
+        for(int i = iStart; i <= iEnd; i=i+100){
+            for(int j = jStart; j <= jEnd; j=j+100){
                 Pixelization pixel = new Pixelization(i,j);
                 double key = pixel.get_id();
                 Point2D cent = pixel.get_centroid();
@@ -89,6 +92,10 @@ public class CreateGrid {
                 Point2D tl = pixel.get_tl();
                 int x = i;
                 int y = j;
+                StdDraw.setPenColor(Color.BLACK);
+
+
+                cent.draw();
 
                 PreparedStatement total = m_Connection.prepareStatement("REPLACE INTO "+ state + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
@@ -215,8 +222,8 @@ public class CreateGrid {
     public static void main(String[] args) {
         
         StdDraw.setPenColor(Color.RED);
-        StdDraw.setXscale(-130.626080,-62.949894);
-        StdDraw.setYscale(20.544091,52.987386);
+        StdDraw.setXscale(-134.626080,-55.949894);
+        StdDraw.setYscale(22.544091,55.987386);
 
         StdDraw.line(-124.626080,24.544091,-66.949894,48.987386);
         StdDraw.setPenColor(Color.BLACK);
@@ -231,19 +238,10 @@ public class CreateGrid {
             e.printStackTrace();
         }
 
-        StdOut.println("grid created, number of pxels: " + grid.Size());
-        for(String state: grid.getStates()){
-            for(double key : grid.getKeys(state)){
-                Point2D bl = grid.getPixelBl(key);
-                Point2D br = grid.getPixelBr(key);
-                Point2D tr = grid.getPixelTr(key);
-                Point2D tl = grid.getPixelTl(key);
-                bl.drawTo(br);
-                bl.drawTo(tl);
-                br.drawTo(tr);
-            }
-        }
+
+
         StdOut.println("Done");
+
 
     }
 

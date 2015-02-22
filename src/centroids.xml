@@ -25,21 +25,21 @@
     <state name="Missouri" lon="-92.43575" lat="38.29989"/>
     <state name="Mississippi" lon="-89.86849" lat="32.59474"/>
     <state name="Montana" lon="-110.05062" lat="46.67912"/>
-    <state name="North Carolina" lon="-79.88784" lat="35.21638"/>
-    <state name="North Dakota" lon="-100.30356" lat="47.46736"/>
+    <state name="North_Carolina" lon="-79.88784" lat="35.21638"/>
+    <state name="North_Dakota" lon="-100.30356" lat="47.46736"/>
     <state name="Nebraska" lon="-99.68333" lat="41.49784"/>
-    <state name="New Hampshire" lon="-71.63407" lat="43.99997"/>
-    <state name="New Jersey" lon="-74.37751" lat="40.13828"/>
-    <state name="New Mexico" lon="-106.02717" lat="34.17184"/>
+    <state name="New_Hampshire" lon="-71.63407" lat="43.99997"/>
+    <state name="New_Jersey" lon="-74.37751" lat="40.13828"/>
+    <state name="New_Mexico" lon="-106.02717" lat="34.17184"/>
     <state name="Nevada" lon="-117.01664" lat="38.50227"/>
-    <state name="New York" lon="-75.81028" lat="42.75633"/>
+    <state name="New_York" lon="-75.81028" lat="42.75633"/>
     <state name="Ohio" lon="-82.67375" lat="40.19406"/>
     <state name="Oklahoma" lon="-98.71880" lat="35.31003"/>
     <state name="Oregon" lon="-120.51327" lat="44.13156"/>
     <state name="Pennsylvania" lon="-77.61161" lat="40.99494"/>
-    <state name="Rhode Island" lon="-71.50537" lat="41.5788"/>
-    <state name="South Carolina" lon="-80.94851" lat="33.62318"/>
-    <state name="South Dakota" lon="-100.25584" lat="44.21638"/>
+    <state name="Rhode_Island" lon="-71.50537" lat="41.5788"/>
+    <state name="South_Carolina" lon="-80.94851" lat="33.62318"/>
+    <state name="South_Dakota" lon="-100.25584" lat="44.21638"/>
     <state name="Tennessee" lon="-85.97945" lat="35.83453"/>
     <state name="Texas" lon="-100.07718" lat="31.16937"/>
     <state name="Utah" lon="-111.54490" lat="39.49720"/>
@@ -47,7 +47,7 @@
     <state name="Vermont" lon="-72.47119" lat="43.86954"/>
     <state name="Washington" lon="-120.84015" lat="47.27291"/>
     <state name="Wisconsin" lon="-89.84694" lat="44.78330"/>
-    <state name="West Virginia" lon="-80.18361" lat="38.92065"/>
+    <state name="West_Virginia" lon="-80.18361" lat="38.92065"/>
     <state name="Wyoming" lon="-107.55226" lat="42.99929"/>
 </states>
 
