@@ -1,0 +1,17 @@
+\contentsline {section}{Abstract}{iii}
+\contentsline {section}{Acknowledgements}{iv}
+\contentsline {section}{List of Tables}{vii}
+\contentsline {section}{List of Figures}{viii}
+\contentsline {chapter}{\numberline {1}Introduction}{1}
+\contentsline {section}{\numberline {1.1}A Different Word Processing System}{1}
+\contentsline {chapter}{\numberline {2}Development of the Department of Operations Research and Financial Engineering}{2}
+\contentsline {section}{\numberline {2.1}Initial Setup}{2}
+\contentsline {subsection}{\numberline {2.1.1}Additional Structure: The Use of Subsections}{3}
+\contentsline {subsubsection}{A subsubsection}{3}
+\contentsline {subsection}{\numberline {2.1.2}Another Subsection}{3}
+\contentsline {section}{\numberline {2.2}Mathematical Symbols}{4}
+\contentsline {section}{\numberline {2.3}Citing and Bibliography}{4}
+\contentsline {section}{\numberline {2.4}Referencing Figures and Tables}{6}
+\contentsline {chapter}{\numberline {3}Analysis of Problem}{7}
+\contentsline {section}{\numberline {3.1}Preliminary Analysis}{7}
+\contentsline {chapter}{\numberline {A}Code}{12}

@@ -1,0 +1,57 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\astroncite{Aas}{2004}]{A04}
+Aas, K. (2004).
+\newblock Modelling the dependence structure of financial assets: A survey of
+  four copulas.
+\newblock Technical report, Norwegian Computing Center.
+\newblock SAMBA/22/04.
+
+\bibitem[\protect\astroncite{Antonov et~al.}{2005}]{AMM05}
+Antonov, A., Mechkov, S., and Misirpashaev, T. (2005).
+\newblock Analytical techniques for synthetic cdos and credit default risk
+  measures.
+\newblock Work in progress, NumeriX.
+
+\bibitem[\protect\astroncite{Bielecki and Rutkowski}{2002}]{BR02}
+Bielecki, T.~R. and Rutkowski, M. (2002).
+\newblock {\em Credit Risk: Modeling, Valuation and Hedging}.
+\newblock Springer.
+
+\bibitem[\protect\astroncite{Billingsley}{1995}]{B95}
+Billingsley, P. (1995).
+\newblock {\em Probability and Measure}.
+\newblock Wiley, 3rd edition.
+
+\bibitem[\protect\astroncite{Blanco et~al.}{2005}]{BBM05}
+Blanco, R., Brennan, S., and Marsh, I.~W. (2005).
+\newblock An empirical analysis of the dynamic relation between
+  investment-grade bonds and credit default swaps.
+\newblock {\em Journal of Finance}, 60(5):2255--2281.
+
+\bibitem[\protect\astroncite{\c{C}inlar}{1975}]{C75}
+\c{C}inlar, E. (1975).
+\newblock {\em Introduction to Stochastic Processes}.
+\newblock Prentice-Hall.
+
+\bibitem[\protect\astroncite{Cotton et~al.}{2004}]{CFPS04}
+Cotton, P., Fouque, J.-P., Papanicolaou, G., and Sircar, R. (2004).
+\newblock Stochastic volatility corrections for interest rate derivatives.
+\newblock {\em Mathematical Finance}, 14(2):173--200.
+
+\bibitem[\protect\astroncite{Duffie and G\^{a}rleanu}{2001}]{DG01}
+Duffie, D. and G\^{a}rleanu, N. (2001).
+\newblock Risk and valuation of collateralized debt obligations.
+\newblock {\em Financial Analysts Journal}, 57(1):41--59.
+
+\bibitem[\protect\astroncite{Frazier}{2006}]{Fraz06}
+Frazier, P. (2006).
+\newblock A nice title.
+\newblock {\em Journal of Everything}, 12(1):34--76.
+
+\bibitem[\protect\astroncite{Musiela and Rutkowski}{1997}]{MR97}
+Musiela, M. and Rutkowski, M. (1997).
+\newblock {\em Martingale Methods in Financial Modelling}.
+\newblock Springer.
+
+\end{thebibliography}
