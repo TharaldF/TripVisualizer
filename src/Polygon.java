@@ -57,6 +57,15 @@ public class Polygon {
         return sum;
     }
 
+    public Iterable<Point2D> getAll(){
+        Stack<Point2D> stack = new Stack<Point2D>();
+        for (int i = 0; i < N; i++){
+            stack.push(a[i]);
+        }
+        return stack;
+
+    }
+
     // return signed area of polygon
     public double area() {
         double sum = 0.0;
