@@ -69,6 +69,8 @@ public class TestFrame extends JFrame implements JMapViewerEventListener {
         JPanel helpPanel = new JPanel();
         JPanel sqlPanel = new JPanel();
 
+
+
         mperpLabelName=new JLabel("Meters/Pixels: ");
         mperpLabelValue=new JLabel(String.format("%s",map().getMeterPerPixel()));
 
