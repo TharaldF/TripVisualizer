@@ -1,7 +1,7 @@
 \contentsline {section}{Abstract}{iii}
 \contentsline {section}{Acknowledgements}{iv}
-\contentsline {section}{List of Tables}{vii}
-\contentsline {section}{List of Figures}{viii}
+\contentsline {section}{List of Tables}{viii}
+\contentsline {section}{List of Figures}{ix}
 \contentsline {chapter}{\numberline {1}Introduction}{1}
 \contentsline {section}{\numberline {1.1}A Different Word Processing System}{1}
 \contentsline {chapter}{\numberline {2}Development of the Department of Operations Research and Financial Engineering}{2}

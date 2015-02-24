@@ -29,11 +29,12 @@ public class CreateGrid {
             SeparateChainingHashST<Double,Pixelization> stateTable = new SeparateChainingHashST<Double, Pixelization>();
             pixels.put(state,stateTable);
         }
-
+/*
         for(Polygon p:xmlReader.getAllPolygons()){
             StdDraw.setPenColor(p.color());
             p.draw();
         }
+        */
 
 
         int iStart;
@@ -46,14 +47,18 @@ public class CreateGrid {
         double finallon = -106.25;
         double finallat = 48.987386;
 
-        iStart = (int) Math.floor(138.348*(initallon + 97.5)*Math.cos(Math.toRadians(initiallat))
-        );
+        /*iStart = (int) Math.floor(138.348*(initallon + 97.5)*Math.cos(Math.toRadians(initiallat))
+        );*/
         jStart = (int) Math.floor(138.348*(initiallat - 37.0));
-
+/*
         iEnd = (int) Math.floor(138.348*(finallon + 97.5)*Math.cos(Math.toRadians(finallat))
         );
+        */
 
         jEnd = (int) Math.floor(138.348*(finallat - 37.0));
+
+        iStart = 2000;
+        iEnd = 2421;
 
 
         StdOut.println("iStart:" + iStart);
@@ -73,14 +78,17 @@ public class CreateGrid {
         int a = 0;
 
 
-        Class.forName("com.mysql.jdbc.Driver");
+
         String url = "jdbc:mysql://127.0.0.1:3306/Grid";
-        Connection m_Connection = DriverManager.getConnection(url, "tharald", "putin");
-        StdOut.println("Connection Successful");
+
+        //StdOut.println("Connection Successful");
 
 
-        for(int i = iStart; i <= iEnd; i=i+100){
-            for(int j = jStart; j <= jEnd; j=j+100){
+        for(int i = iEnd; i >= iStart; i--){
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection m_Connection = DriverManager.getConnection(url, "tharald", "putin");
+            StdOut.println("" + i + " / " + iEnd);
+            for(int j = jStart; j <= jEnd; j++){
                 Pixelization pixel = new Pixelization(i,j);
                 double key = pixel.get_id();
                 Point2D cent = pixel.get_centroid();
@@ -92,10 +100,10 @@ public class CreateGrid {
                 Point2D tl = pixel.get_tl();
                 int x = i;
                 int y = j;
-                StdDraw.setPenColor(Color.BLACK);
+                //StdDraw.setPenColor(Color.BLACK);
 
 
-                cent.draw();
+                //cent.draw();
 
                 PreparedStatement total = m_Connection.prepareStatement("REPLACE INTO "+ state + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
@@ -143,7 +151,8 @@ public class CreateGrid {
                 //StdOut.println(a);
 
             }
-            if(a>10000) break;
+            m_Connection.close();
+            //if(a>10000) break;
             //StdOut.println("Y: "+ y);
         }
 
@@ -220,13 +229,14 @@ public class CreateGrid {
 
 
     public static void main(String[] args) {
-        
+        /*
         StdDraw.setPenColor(Color.RED);
         StdDraw.setXscale(-134.626080,-55.949894);
         StdDraw.setYscale(22.544091,55.987386);
 
         StdDraw.line(-124.626080,24.544091,-66.949894,48.987386);
         StdDraw.setPenColor(Color.BLACK);
+        */
 
 
         CreateGrid grid = null;

@@ -4,17 +4,13 @@
 
 import org.openstreetmap.gui.jmapviewer.*;
 import org.openstreetmap.gui.jmapviewer.events.JMVCommandEvent;
-import org.openstreetmap.gui.jmapviewer.interfaces.JMapViewerEventListener;
-import org.openstreetmap.gui.jmapviewer.interfaces.MapPolygon;
-import org.openstreetmap.gui.jmapviewer.interfaces.TileLoader;
-import org.openstreetmap.gui.jmapviewer.interfaces.TileSource;
+import org.openstreetmap.gui.jmapviewer.interfaces.*;
 import org.openstreetmap.gui.jmapviewer.tilesources.BingAerialTileSource;
 import org.openstreetmap.gui.jmapviewer.tilesources.MapQuestOpenAerialTileSource;
 import org.openstreetmap.gui.jmapviewer.tilesources.MapQuestOsmTileSource;
 import org.openstreetmap.gui.jmapviewer.tilesources.OsmTileSource;
 
-import java.awt.BorderLayout;
-import java.awt.Cursor;
+import java.awt.*;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +19,9 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.sql.*;
 import java.util.*;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -46,7 +44,7 @@ public class TestFrame extends JFrame implements JMapViewerEventListener {
 
     public TestFrame() {
 
-        super("JMapViewer TestFrame");
+        super("TrafficFlow");
         XMLReader xmlreader = new XMLReader();
         setSize(400, 400);
 
@@ -71,6 +69,7 @@ public class TestFrame extends JFrame implements JMapViewerEventListener {
 
 
 
+
         mperpLabelName=new JLabel("Meters/Pixels: ");
         mperpLabelValue=new JLabel(String.format("%s",map().getMeterPerPixel()));
 
@@ -82,6 +81,7 @@ public class TestFrame extends JFrame implements JMapViewerEventListener {
         panel.setLayout(new BorderLayout());
         panel.add(panelTop, BorderLayout.NORTH);
         panel.add(panelBottom, BorderLayout.SOUTH);
+        add(sqlPanel,BorderLayout.EAST);
         JLabel helpLabel = new JLabel("Use right mouse button to move,\n "
                 + "left double click or mouse wheel to zoom.");
         helpPanel.add(helpLabel);
@@ -171,26 +171,85 @@ public class TestFrame extends JFrame implements JMapViewerEventListener {
         add(treeMap, BorderLayout.CENTER);
 
         //
+
         LayerGroup pixelGroup = new LayerGroup("States");
         pixelGroup.setVisible(true);
         SeparateChainingHashST<String, Layer>  states = new SeparateChainingHashST<String,Layer>();
 
 
+        String[] options = new String[51];
+        int i = 0;
         for(String s: xmlreader.getAllStates()) {
             Layer layer = pixelGroup.addLayer(s);
            states.put(s,layer);
-            Polygon pol = xmlreader.getStatePolygon(s);
+           Polygon pol = xmlreader.getStatePolygon(s);
 
             List<Coordinate> list = new ArrayList<Coordinate>();
             for(Point2D p: pol.getAll()){
                 list.add(c(p));
             }
 
+
             MapPolygon thisState = new MapPolygonImpl(layer,s,list);
             map().addMapPolygon(thisState);
             treeMap.addLayer(layer);
+            options[i] = s;
+            i++;
+
 
         }
+        JComboBox jComboBox = new JComboBox(options);
+
+       sqlPanel.add(jComboBox);
+
+        JButton getPixels = new JButton();
+        getPixels.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                } catch (ClassNotFoundException e1) {
+                    e1.printStackTrace();
+                }
+                String url = "jdbc:mysql://127.0.0.1:3306/Grid";
+                try {
+                    Connection m_Connection = DriverManager.getConnection(url, "tharald", "putin");
+                    PreparedStatement total = m_Connection.prepareStatement("SELECT * FROM " + jComboBox.getSelectedItem());
+                    ResultSet resultSet = total.executeQuery();
+                   while(resultSet.next()){
+                       double bl_long = resultSet.getDouble(6);
+                       double bl_lat = resultSet.getDouble(7);
+                       double br_long = resultSet.getDouble(8);
+                       double br_lat = resultSet.getDouble(9);
+                       double tl_long = resultSet.getDouble(10);
+                       double tl_lat = resultSet.getDouble(11);
+                       double tr_long = resultSet.getDouble(12);
+                       double tr_lat = resultSet.getDouble(13);
+                       String state = (String) jComboBox.getSelectedItem();
+                       List<Coordinate> points = new ArrayList<Coordinate>();
+                       points.add(c(bl_lat, bl_long));
+                       points.add(c(br_lat,br_long));
+                       points.add(c(tr_lat,tr_long));
+                       points.add(c(tl_lat,tl_long));
+
+
+                       MapPolygonImpl  pix =  new MapPolygonImpl(states.get(state),points);
+                       map().addMapPolygon(pix);
+
+                   }
+
+
+
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+                //StdOut.println("Connection Successful");
+
+
+            }
+        });
+
+        sqlPanel.add(getPixels);
 
 
 
