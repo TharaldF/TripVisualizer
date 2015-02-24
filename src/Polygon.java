@@ -3,10 +3,13 @@ import java.awt.*;
 /*************************************************************************
  *  Compilation:  javac Polygon.java
  *  Execution:    java Polygon
- *  Dependencies: Point.java
+ *  Dependencies: Point2D.java
  *
  *  Implementation of 2D polygon, possibly intersecting.
  *
+ *
+ *  Original Obtained from Princeton University algs4 library
+ *  This version has been altered from the original
  *************************************************************************/
 
 public class Polygon {
