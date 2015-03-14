@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59797cc3-4097-4c49-828f-952439625279" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/createTable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TripGenerator.java" afterPath="$PROJECT_DIR$/src/TripGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TripVisualizer.iws" />
@@ -154,8 +151,8 @@
       <file leaf-file-name="TripGenerator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/TripGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41424417" vertical-offset="0" max-vertical-offset="1515">
-              <caret line="19" column="49" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
+            <state vertical-scroll-proportion="-0.4360465" vertical-offset="495" max-vertical-offset="1515">
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -747,7 +744,7 @@
       <workItem from="1424653171453" duration="2889000" />
       <workItem from="1424668345976" duration="4061000" />
       <workItem from="1424710779897" duration="18239000" />
-      <workItem from="1426351475946" duration="7427000" />
+      <workItem from="1426351475946" duration="7544000" />
     </task>
     <task id="LOCAL-00001" summary="TripGenerator Class">
       <created>1426357233801</created>
@@ -755,11 +752,17 @@
       <option name="project" value="LOCAL" />
       <updated>1426357233802</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Updates&#10;">
+      <created>1426371169225</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1426371169225</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95825000" />
+    <option name="totallyTimeSpent" value="95942000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="155" y="23" width="1203" height="822" extended-state="0" />
@@ -840,7 +843,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="TripGenerator Class" />
-    <option name="LAST_COMMIT_MESSAGE" value="TripGenerator Class" />
+    <MESSAGE value="Updates&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updates&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1319,8 +1323,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TripGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41424417" vertical-offset="0" max-vertical-offset="1515">
-          <caret line="19" column="49" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
+        <state vertical-scroll-proportion="-0.4360465" vertical-offset="495" max-vertical-offset="1515">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
