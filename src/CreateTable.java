@@ -3,9 +3,9 @@ import java.sql.*;
 /**
  * Created by Tharald on 14/03/15.
  */
-public class createTable {
+public class CreateTable {
 
-    public createTable() throws ClassNotFoundException, SQLException {
+    public CreateTable() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
         String url = "jdbc:mysql://127.0.0.1:3306/Grid";
         Connection m_Connection = DriverManager.getConnection(url, "tharald", "putin");
@@ -14,7 +14,7 @@ public class createTable {
 
         while (result.next()){
             String state = result.getString(1);
-            StdOut.println(state);
+            System.out.println(state);
             PreparedStatement get = m_Connection.prepareStatement("SELECT ID FROM Grid." + state +";");
             ResultSet ids = get.executeQuery();
             while (ids.next()){
@@ -22,7 +22,6 @@ public class createTable {
                 PreparedStatement insert = m_Connection.prepareStatement("REPLACE INTO Global.Info VALUES(?,?)");
                 insert.setDouble(1, id);
                 insert.setString(2, state);
-                // StdOut.println(insert.toString());
                 insert.executeUpdate();
             }
         }
@@ -31,7 +30,7 @@ public class createTable {
 
     public static void main(String[] args){
         try {
-            createTable go = new createTable();
+            CreateTable go = new CreateTable();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
