@@ -25,6 +25,7 @@ public class TripGenerator  {
             reader = new BufferedReader(new FileReader(filename));
             reader.readLine();
             while((line = reader.readLine()) != null) {
+                double atime;
                 String[] info = line.split(csvSplitBy);
                 double person_id = Long.parseLong(info[5]);
                 if(Double.parseDouble(info[12]) == 0.0 || Double.parseDouble(info[13])==0){
@@ -32,6 +33,7 @@ public class TripGenerator  {
                 }
                 int k = 0;
                 for (int i = 1; i <= 7;i++) {
+                    StdOut.println(i);
                     k++;
                     boolean skip = false;
                     int j = i;
@@ -47,40 +49,44 @@ public class TripGenerator  {
                     double unique_id = createId(person_id, k);
                     double otime = Double.parseDouble(info[index + 2]);
                     double dtime = Double.parseDouble(info[index + 3]);
-                    double atime = Double.parseDouble(info[index + 2]);
+
                     int ox_pixel = get_x(Double.parseDouble(info[index]), Double.parseDouble(info[index + 1]));
                     int oy_pixel = get_y(Double.parseDouble(info[index]), Double.parseDouble(info[index +1]));
                     int ax_pixel;
                     int ay_pixel;
                     if(i==7){
+                        atime = Double.parseDouble(info[index + 3]);
                         ax_pixel = get_x(Double.parseDouble(info[12]), Double.parseDouble(info[13]));
                         ay_pixel = get_y(Double.parseDouble(info[12]), Double.parseDouble(info[13]));
                     }else {
+                        atime = Double.parseDouble(info[index + 11]);
                         double lat = Double.parseDouble(info[index + 9]);
                         double lon = Double.parseDouble(info[index + 10]);
-                        j = i;
                         if(lat == 0.0 || lon == 0.0) {
-                            j++;
                             for(j = i + 1; (lat == 0.0 || lon == 0.0)  && j < 7; j++) {
                                     int tempindex = (j - 1) * 9 + 12;
                                     if(info[tempindex - 5].equals("NA") || info[tempindex - 3].equals("N")){
                                         skip = true;
                                         break;
                                     }
+                                    atime = Double.parseDouble(info[tempindex + 11]);
                                     lat = Double.parseDouble(info[tempindex + 9]);
                                     lon = Double.parseDouble(info[tempindex + 10]);
                                     dType = info[tempindex - 3];
-
+                                    StdOut.println(lat + " " + lon + " " + dType + "first" + j + "i: " + i);
                             }
                             if(skip){
                                 break;
                             }
                             if(lat == 0.0 || lon == 0.0) {
                                 dType = "H";
-                                ax_pixel = get_x(Double.parseDouble(info[12]), Double.parseDouble(info[13]));
-                                ay_pixel = get_y(Double.parseDouble(info[12]), Double.parseDouble(info[13]));
+                                atime = 0;
+                                lat = Double.parseDouble(info[12]);
+                                lon = Double.parseDouble(info[13]);
                             }
+                            i = j-1;
                         }
+                        StdOut.println(lat + " " + lon + " " + dType + j);
                         ax_pixel = get_x(lat, lon);
                         ay_pixel = get_y(lat, lon);
                     }
@@ -111,7 +117,7 @@ public class TripGenerator  {
                             i, person_id, unique_id, oId, aId, otime, dtime, atime, oType, dType);
                     */
 
-                     i = j;
+
 
                 }
             }
@@ -146,7 +152,7 @@ public class TripGenerator  {
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        String filePath = "/users/tharald/documents/NNFiles/Alabama/Alabama_01001_Module6NN1stRun.csv";
+        String filePath = "/Users/jacobperricone/Desktop/triptest.csv";
         File inputFile = new File(filePath);
         TripGenerator gen = new TripGenerator(inputFile.getAbsoluteFile());
     }
