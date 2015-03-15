@@ -31,6 +31,7 @@ public class TripGenerator  {
                     continue;
                 }
                 for (int i = 1; i <= 7;i++) {
+                    int j;
                     int index = (i-1)*9 + 12;
                     String oType = info[index - 5];
                     String dType = info[index - 3];
@@ -49,9 +50,23 @@ public class TripGenerator  {
                         ax_pixel = get_x(Double.parseDouble(info[12]), Double.parseDouble(info[13]));
                         ay_pixel = get_y(Double.parseDouble(info[12]), Double.parseDouble(info[13]));
                     }else {
-
-                        ax_pixel = get_x(Double.parseDouble(info[index + 9]), Double.parseDouble(info[index + 10]));
-                        ay_pixel = get_y(Double.parseDouble(info[index + 9]), Double.parseDouble(info[index + 10]));
+                        double lat = Double.parseDouble(info[index + 9]);
+                        double lon = Double.parseDouble(info[index + 10]);
+                        j = i;
+                        if(lat == 0.0 || lon == 0.0) {
+                            while((lat == 0.0 || lon == 0.0) && ++j < 7) {
+                                int tempindex = (j-1)*9 + 12;
+                                lat = Double.parseDouble(info[tempindex + 9]);
+                                lon = Double.parseDouble(info[tempindex + 10]);
+                            }
+                            if(lat == 0.0 || lon == 0.0) {
+                                j++;
+                                lat = Double.parseDouble(info[12]);
+                                lon = Double.parseDouble(info[13]);
+                            }
+                        }
+                        ax_pixel = get_x(lat, lon);
+                        ay_pixel = get_y(lat, lon);
                     }
 
                     double oId = fetchPixelId(ox_pixel, oy_pixel);
@@ -80,7 +95,7 @@ public class TripGenerator  {
                             i, person_id, unique_id, oId, aId, otime, dtime, atime, oType, dType);
                     */
 
-
+                    j = i;
 
                 }
             }
