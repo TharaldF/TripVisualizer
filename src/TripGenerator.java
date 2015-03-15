@@ -30,8 +30,8 @@ public class TripGenerator  {
                 if(Double.parseDouble(info[12]) == 0.0 || Double.parseDouble(info[13])==0){
                     continue;
                 }
+                int k = 0;
                 for (int i = 1; i <= 7;i++) {
-                    int k = 0;
                     k++;
                     boolean skip = false;
                     int j;
