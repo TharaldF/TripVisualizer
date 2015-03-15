@@ -31,6 +31,8 @@ public class TripGenerator  {
                     continue;
                 }
                 for (int i = 1; i <= 7;i++) {
+                    int k = 0;
+                    k++;
                     boolean skip = false;
                     int j;
                     int index = (i-1)*9 + 12;
@@ -59,8 +61,7 @@ public class TripGenerator  {
                         j = i;
                         if(lat == 0.0 || lon == 0.0) {
                             j++;
-                            while(lat == 0.0 || lon == 0.0) {
-                                if(j < 7) {
+                            for(j = i + 1; (lat == 0.0 || lon == 0.0)  && j < 7; j++) {
                                     int tempindex = (j - 1) * 9 + 12;
                                     if(info[tempindex - 5].equals("NA") || info[tempindex - 3].equals("N")){
                                         skip = true;
@@ -68,16 +69,14 @@ public class TripGenerator  {
                                     }
                                     lat = Double.parseDouble(info[tempindex + 9]);
                                     lon = Double.parseDouble(info[tempindex + 10]);
-                                    j++;
-                                }
-                                else {
-                                    lat = Double.parseDouble(info[12]);
-                                    lon = Double.parseDouble(info[13]);
-                                    j++;
-                                }
+
                             }
                             if(skip){
                                 break;
+                            }
+                            if(lat == 0.0 || lon == 0.0) {
+                                ax_pixel = get_x(Double.parseDouble(info[12]), Double.parseDouble(info[13]));
+                                ay_pixel = get_y(Double.parseDouble(info[12]), Double.parseDouble(info[13]));
                             }
                         }
                         ax_pixel = get_x(lat, lon);
@@ -100,7 +99,7 @@ public class TripGenerator  {
                     String state = result.getString(1);
                     PreparedStatement insert = m_Connection.prepareStatement("REPLACE INTO oTrip."+ state +" VALUES(?,?,?,?,?,?,?,?,?,?)");
                     insert.setDouble(1, unique_id); insert.setDouble(2, person_id);
-                    insert.setInt(3, i); insert.setDouble(4, oId); insert.setDouble(5, aId);
+                    insert.setInt(3, k); insert.setDouble(4, oId); insert.setDouble(5, aId);
                     insert.setDouble(6, otime);  insert.setDouble(7, dtime);
                     insert.setDouble(8, atime);
                     insert.setString(9, oType); insert.setString(10, dType);
