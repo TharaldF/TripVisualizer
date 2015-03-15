@@ -19,7 +19,7 @@ public class TripGenerator  {
         String line = "";
         String csvSplitBy = ",";
         Class.forName("com.mysql.jdbc.Driver");
-        String url = "jdbc:mysql://127.0.0.1:3306/Grid";
+        String url = "jdbc:mysql://127.0.0.1:3306/Global";
         Connection m_Connection = DriverManager.getConnection(url, "tharald", "putin");
         try{
             reader = new BufferedReader(new FileReader(filename));
@@ -53,18 +53,27 @@ public class TripGenerator  {
                     double oId = fetchPixelId(ox_pixel, oy_pixel);
                     double aId = fetchPixelId(ax_pixel, ay_pixel);
 
-                    PreparedStatement total = m_Connection.prepareStatement("SELECT State from Global.Info WHERE ID =" + "oId");
+                    String s = String.format("SELECT State from Global.Info WHERE ID = %f", oId);
+                   if(s.equals("SELECT State from Global.Info WHERE ID = 19952929719.000000")){
+                       StdOut.println(Double.parseDouble(info[index]) + " "+ Double.parseDouble(info[index + 1]));
+                   }
+
+
+                    PreparedStatement total = m_Connection.prepareStatement(s);
                     ResultSet result = total.executeQuery();
+                    result.next();
                     String state = result.getString(1);
-                    PreparedStatement insert = m_Connection.prepareStatement("INSERT INTO oTrip."+ state +" VALUES(?,?,?,?,?,?,?,?,?,?)");
+                    PreparedStatement insert = m_Connection.prepareStatement("REPLACE INTO oTrip."+ state +" VALUES(?,?,?,?,?,?,?,?,?,?)");
                     insert.setDouble(1, unique_id); insert.setDouble(2, person_id);
                     insert.setInt(3, i); insert.setDouble(4, oId); insert.setDouble(5, aId);
                     insert.setDouble(6, otime);  insert.setDouble(7, dtime);
                     insert.setDouble(8, atime);
                     insert.setString(9, oType); insert.setString(10, dType);
                     insert.executeUpdate();
+                    /*
                     System.out.printf("Trip Number: %d, Person_id: %f, Unique Id: %f, oPixelid: %f, aPixelid: %f, oTime: %f, dTime: %f, aTime: %f, otype: %s, dType: %s \n",
                             i, person_id, unique_id, oId, aId, otime, dtime, atime, oType, dType);
+                    */
 
 
 
@@ -101,7 +110,7 @@ public class TripGenerator  {
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        String filePath = args[0];
+        String filePath = "/users/tharald/documents/NNFiles/Alabama/Alabama_01133_Module6NN1stRun.csv";
         File inputFile = new File(filePath);
         TripGenerator gen = new TripGenerator(inputFile.getAbsoluteFile());
     }
