@@ -27,6 +27,9 @@ public class TripGenerator  {
             while((line = reader.readLine()) != null) {
                 String[] info = line.split(csvSplitBy);
                 double person_id = Long.parseLong(info[5]);
+                if(Double.parseDouble(info[12]) == 0.0 || Double.parseDouble(info[13])==0){
+                    continue;
+                }
                 for (int i = 1; i <= 7;i++) {
                     int index = (i-1)*9 + 12;
                     String oType = info[index - 5];
@@ -46,6 +49,7 @@ public class TripGenerator  {
                         ax_pixel = get_x(Double.parseDouble(info[12]), Double.parseDouble(info[13]));
                         ay_pixel = get_y(Double.parseDouble(info[12]), Double.parseDouble(info[13]));
                     }else {
+
                         ax_pixel = get_x(Double.parseDouble(info[index + 9]), Double.parseDouble(info[index + 10]));
                         ay_pixel = get_y(Double.parseDouble(info[index + 9]), Double.parseDouble(info[index + 10]));
                     }
@@ -54,14 +58,15 @@ public class TripGenerator  {
                     double aId = fetchPixelId(ax_pixel, ay_pixel);
 
                     String s = String.format("SELECT State from Global.Info WHERE ID = %f", oId);
-                   if(s.equals("SELECT State from Global.Info WHERE ID = 19952929719.000000")){
-                       StdOut.println(Double.parseDouble(info[index]) + " "+ Double.parseDouble(info[index + 1]));
-                   }
-
+                    StdOut.println(s);
+                    StdOut.println(person_id + " " + Double.parseDouble(info[index]) +" " + Double.parseDouble(info[index + 1]));
 
                     PreparedStatement total = m_Connection.prepareStatement(s);
                     ResultSet result = total.executeQuery();
-                    result.next();
+                    if(!result.next()){
+                        continue;
+                    }
+
                     String state = result.getString(1);
                     PreparedStatement insert = m_Connection.prepareStatement("REPLACE INTO oTrip."+ state +" VALUES(?,?,?,?,?,?,?,?,?,?)");
                     insert.setDouble(1, unique_id); insert.setDouble(2, person_id);
@@ -110,7 +115,7 @@ public class TripGenerator  {
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        String filePath = "/users/tharald/documents/NNFiles/Alabama/Alabama_01133_Module6NN1stRun.csv";
+        String filePath = "/users/tharald/documents/NNFiles/Alabama/Alabama_01001_Module6NN1stRun.csv";
         File inputFile = new File(filePath);
         TripGenerator gen = new TripGenerator(inputFile.getAbsoluteFile());
     }
