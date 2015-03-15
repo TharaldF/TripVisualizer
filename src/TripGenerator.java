@@ -144,7 +144,7 @@ public class TripGenerator  {
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        String filePath = "/users/tharald/documents/NNFiles/Alabama/Alabama_01001_Module6NN1stRun.csv";
+        String filePath = "/users/tharald/documents/NNFiles/Alabama/test.csv";
         File inputFile = new File(filePath);
         TripGenerator gen = new TripGenerator(inputFile.getAbsoluteFile());
     }
