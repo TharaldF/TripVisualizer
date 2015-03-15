@@ -54,15 +54,19 @@ public class TripGenerator  {
                         double lon = Double.parseDouble(info[index + 10]);
                         j = i;
                         if(lat == 0.0 || lon == 0.0) {
-                            while((lat == 0.0 || lon == 0.0) && ++j < 7) {
-                                int tempindex = (j-1)*9 + 12;
-                                lat = Double.parseDouble(info[tempindex + 9]);
-                                lon = Double.parseDouble(info[tempindex + 10]);
-                            }
-                            if(lat == 0.0 || lon == 0.0) {
-                                j++;
-                                lat = Double.parseDouble(info[12]);
-                                lon = Double.parseDouble(info[13]);
+                            j++;
+                            while(lat == 0.0 || lon == 0.0) {
+                                if(j < 7) {
+                                    int tempindex = (j - 1) * 9 + 12;
+                                    lat = Double.parseDouble(info[tempindex + 9]);
+                                    lon = Double.parseDouble(info[tempindex + 10]);
+                                    j++;
+                                }
+                                else {
+                                    lat = Double.parseDouble(info[12]);
+                                    lon = Double.parseDouble(info[13]);
+                                    j++;
+                                }
                             }
                         }
                         ax_pixel = get_x(lat, lon);
