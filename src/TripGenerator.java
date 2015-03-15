@@ -34,7 +34,7 @@ public class TripGenerator  {
                 for (int i = 1; i <= 7;i++) {
                     k++;
                     boolean skip = false;
-                    int j;
+                    int j = i;
                     int index = (i-1)*9 + 12;
                     String oType = info[index - 5];
                     String dType = info[index - 3];
@@ -44,7 +44,7 @@ public class TripGenerator  {
                     if(info[index - 5].equals("NA") || info[index - 3].equals("N")){
                         break;
                     }
-                    double unique_id = createId(person_id, i);
+                    double unique_id = createId(person_id, k);
                     double otime = Double.parseDouble(info[index + 2]);
                     double dtime = Double.parseDouble(info[index + 3]);
                     double atime = Double.parseDouble(info[index + 2]);
@@ -69,12 +69,14 @@ public class TripGenerator  {
                                     }
                                     lat = Double.parseDouble(info[tempindex + 9]);
                                     lon = Double.parseDouble(info[tempindex + 10]);
+                                    dType = info[tempindex - 3];
 
                             }
                             if(skip){
                                 break;
                             }
                             if(lat == 0.0 || lon == 0.0) {
+                                dType = "H";
                                 ax_pixel = get_x(Double.parseDouble(info[12]), Double.parseDouble(info[13]));
                                 ay_pixel = get_y(Double.parseDouble(info[12]), Double.parseDouble(info[13]));
                             }
@@ -109,7 +111,7 @@ public class TripGenerator  {
                             i, person_id, unique_id, oId, aId, otime, dtime, atime, oType, dType);
                     */
 
-                    j = i;
+                     i = j;
 
                 }
             }
