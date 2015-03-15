@@ -31,11 +31,15 @@ public class TripGenerator  {
                     continue;
                 }
                 for (int i = 1; i <= 7;i++) {
+                    boolean skip = false;
                     int j;
                     int index = (i-1)*9 + 12;
                     String oType = info[index - 5];
                     String dType = info[index - 3];
                     if(oType.equals("NA") || dType.equals("N")){
+                        break;
+                    }
+                    if(info[index - 5].equals("NA") || info[index - 3].equals("N")){
                         break;
                     }
                     double unique_id = createId(person_id, i);
@@ -58,6 +62,10 @@ public class TripGenerator  {
                             while(lat == 0.0 || lon == 0.0) {
                                 if(j < 7) {
                                     int tempindex = (j - 1) * 9 + 12;
+                                    if(info[tempindex - 5].equals("NA") || info[tempindex - 3].equals("N")){
+                                        skip = true;
+                                        break;
+                                    }
                                     lat = Double.parseDouble(info[tempindex + 9]);
                                     lon = Double.parseDouble(info[tempindex + 10]);
                                     j++;
@@ -67,6 +75,9 @@ public class TripGenerator  {
                                     lon = Double.parseDouble(info[13]);
                                     j++;
                                 }
+                            }
+                            if(skip){
+                                break;
                             }
                         }
                         ax_pixel = get_x(lat, lon);
