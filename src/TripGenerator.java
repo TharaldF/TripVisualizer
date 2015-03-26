@@ -49,50 +49,55 @@ public class TripGenerator  {
                     double unique_id = createId(person_id, k);
                     double otime = Double.parseDouble(info[index + 2]);
                     double dtime = Double.parseDouble(info[index + 3]);
-
-                    int ox_pixel = get_x(Double.parseDouble(info[index]), Double.parseDouble(info[index + 1]));
-                    int oy_pixel = get_y(Double.parseDouble(info[index]), Double.parseDouble(info[index +1]));
-                    int ax_pixel;
-                    int ay_pixel;
+                    double olat = Double.parseDouble(info[index]);
+                    double olon = Double.parseDouble(info[index + 1]);
+                    int ox_pixel = get_x(olat, olon);
+                    int oy_pixel = get_y(olat, olon);
+                    int dx_pixel;
+                    int dy_pixel;
+                    double dlat;
+                    double dlon;
                     if(i==7){
                         atime = Double.parseDouble(info[index + 3]);
-                        ax_pixel = get_x(Double.parseDouble(info[12]), Double.parseDouble(info[13]));
-                        ay_pixel = get_y(Double.parseDouble(info[12]), Double.parseDouble(info[13]));
+                        dlat  = Double.parseDouble(info[12]);
+                        dlon = Double.parseDouble(info[13]);
+                        dx_pixel = get_x(dlat,dlon);
+                        dy_pixel = get_y(dlat,dlon);
                     }else {
                         atime = Double.parseDouble(info[index + 11]);
-                        double lat = Double.parseDouble(info[index + 9]);
-                        double lon = Double.parseDouble(info[index + 10]);
-                        if(lat == 0.0 || lon == 0.0) {
-                            for(j = i + 1; (lat == 0.0 || lon == 0.0)  && j < 7; j++) {
+                         dlat = Double.parseDouble(info[index + 9]);
+                        dlon = Double.parseDouble(info[index + 10]);
+                        if(dlat == 0.0 || dlon == 0.0) {
+                            for(j = i + 1; (dlat == 0.0 || dlon == 0.0)  && j < 7; j++) {
                                     int tempindex = (j - 1) * 9 + 12;
                                     if(info[tempindex - 5].equals("NA") || info[tempindex - 3].equals("N")){
                                         skip = true;
                                         break;
                                     }
                                     atime = Double.parseDouble(info[tempindex + 11]);
-                                    lat = Double.parseDouble(info[tempindex + 9]);
-                                    lon = Double.parseDouble(info[tempindex + 10]);
+                                    dlat = Double.parseDouble(info[tempindex + 9]);
+                                    dlon = Double.parseDouble(info[tempindex + 10]);
                                     dType = info[tempindex - 3];
-                                    StdOut.println(lat + " " + lon + " " + dType + "first" + j + "i: " + i);
+                                    StdOut.println(dlat + " " + dlon + " " + dType + "first" + j + "i: " + i);
                             }
                             if(skip){
                                 break;
                             }
-                            if(lat == 0.0 || lon == 0.0) {
+                            if(dlat == 0.0 || dlon == 0.0) {
                                 dType = "H";
                                 atime = 0;
-                                lat = Double.parseDouble(info[12]);
-                                lon = Double.parseDouble(info[13]);
+                                dlat = Double.parseDouble(info[12]);
+                                dlon = Double.parseDouble(info[13]);
                             }
                             i = j-1;
                         }
-                        StdOut.println(lat + " " + lon + " " + dType + j);
-                        ax_pixel = get_x(lat, lon);
-                        ay_pixel = get_y(lat, lon);
+                        StdOut.println(dlat + " " + dlon + " " + dType + j);
+                        dx_pixel = get_x(dlat, dlon);
+                        dy_pixel = get_y(dlat, dlon);
                     }
 
                     double oId = fetchPixelId(ox_pixel, oy_pixel);
-                    double aId = fetchPixelId(ax_pixel, ay_pixel);
+                    double aId = fetchPixelId(dx_pixel, dy_pixel);
 
                     String s = String.format("SELECT State from Global.Info WHERE ID = %f", oId);
                     StdOut.println(s);
@@ -105,12 +110,15 @@ public class TripGenerator  {
                     }
 
                     String state = result.getString(1);
-                    PreparedStatement insert = m_Connection.prepareStatement("REPLACE INTO oTrip."+ state +" VALUES(?,?,?,?,?,?,?,?,?,?)");
+                    PreparedStatement insert = m_Connection.prepareStatement("REPLACE INTO oTrip."+ state +" VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                     insert.setDouble(1, unique_id); insert.setDouble(2, person_id);
-                    insert.setInt(3, k); insert.setDouble(4, oId); insert.setDouble(5, aId);
-                    insert.setDouble(6, otime);  insert.setDouble(7, dtime);
-                    insert.setDouble(8, atime);
-                    insert.setString(9, oType); insert.setString(10, dType);
+                    insert.setInt(3, k); insert.setDouble(4, oId); insert.setInt(5,ox_pixel);
+                    insert.setInt(6,oy_pixel); insert.setDouble(7, olat); insert.setDouble(8,olon);
+                    insert.setDouble(9, aId); insert.setInt(10, dx_pixel); insert.setInt(11,dy_pixel);
+                    insert.setDouble(12,dlat); insert.setDouble(13,dlon);
+                    insert.setDouble(14, otime);  insert.setDouble(15, dtime);
+                    insert.setDouble(16, atime);
+                    insert.setString(17, oType); insert.setString(18, dType);
                     insert.executeUpdate();
                     /*
                     System.out.printf("Trip Number: %d, Person_id: %f, Unique Id: %f, oPixelid: %f, aPixelid: %f, oTime: %f, dTime: %f, aTime: %f, otype: %s, dType: %s \n",
