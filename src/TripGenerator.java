@@ -17,7 +17,7 @@ public class TripGenerator  {
     private void generateTrips(File filename) throws ClassNotFoundException, SQLException {
         BufferedReader reader = null;
         String line = "";
-        String csvSplitBy = ",";
+        String csvSplitBy = ";";
         Class.forName("com.mysql.jdbc.Driver");
         String url = "jdbc:mysql://127.0.0.1:3306/Global";
         Connection m_Connection = DriverManager.getConnection(url, "tharald", "putin");
@@ -60,7 +60,6 @@ public class TripGenerator  {
                         double lon = Double.parseDouble(info[index + 10]);
                         j = i;
                         if(lat == 0.0 || lon == 0.0) {
-                            j++;
                             for(j = i + 1; (lat == 0.0 || lon == 0.0)  && j < 7; j++) {
                                     int tempindex = (j - 1) * 9 + 12;
                                     if(info[tempindex - 5].equals("NA") || info[tempindex - 3].equals("N")){
@@ -77,8 +76,8 @@ public class TripGenerator  {
                             }
                             if(lat == 0.0 || lon == 0.0) {
                                 dType = "H";
-                                ax_pixel = get_x(Double.parseDouble(info[12]), Double.parseDouble(info[13]));
-                                ay_pixel = get_y(Double.parseDouble(info[12]), Double.parseDouble(info[13]));
+                                lat = Double.parseDouble(info[12]);
+                                lon = Double.parseDouble(info[13]);
                             }
                         }
                         ax_pixel = get_x(lat, lon);
