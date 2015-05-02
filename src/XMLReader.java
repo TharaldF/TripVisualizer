@@ -124,19 +124,20 @@ public class XMLReader {
     public static void main(String[] args){
        XMLReader xmlReader = new XMLReader();
         StdOut.println(xmlReader.size());
-        StdDraw.setXscale(-136,-66);
-        StdDraw.setYscale(20.54,53);
-        /*for(String s: xmlReader.getAllStates()){
+       // StdDraw.setXscale(-136,-66);
+        // StdDraw.setYscale(20.54,53);
+        for(String s: xmlReader.getAllStates()){
             StdOut.println(s);
         }
 
+        /*
         StdDraw.setPenColor(Color.GREEN);
         int points= 0;
         for(Point2D p:xmlReader.getAllPoints()){
             p.draw();
             points++;
         }
-        */
+
         for(Polygon p:xmlReader.getAllPolygons()){
             StdDraw.setPenColor(p.color());
             p.draw();
@@ -149,6 +150,7 @@ public class XMLReader {
         for(Point2D p:xmlReader.getAllPoints()){
             p.draw();
         }
+        */
 
     }
 }

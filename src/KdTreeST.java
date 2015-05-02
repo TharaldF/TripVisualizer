@@ -178,6 +178,7 @@ public class KdTreeST<Value>
     // returns value mapped to by p
     public Value get(Point2D p)
     {
+        if (size == 0) return null;
         // if coordinates are equal, return value
         if ((root.p.x() == p.x()) && (root.p.y() == p.y())) return root.value;
 
